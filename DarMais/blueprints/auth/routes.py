@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, url_for, flash
+from flask import render_template, request, redirect, url_for, session
 from blueprints.auth import auth_bp
 from sqlalchemy import select
 from models import Usuarios
@@ -14,12 +14,14 @@ def login():
             usuario = session.scalar(select(Usuarios).where(Usuarios.email == email))
             
             if usuario and usuario.senha == senha:
+               session['user_id'] = usuario.id
                return redirect(url_for('index.index'))
            
     return render_template('auth/login.html')
 
 @auth_bp.route('/logout')
 def logout():
+    session.pop('user_id', None)
     return redirect(url_for("index.index"))
 
 

@@ -16,3 +16,9 @@ O que foi feito: Fiz as rotas de login
 Dificuldade encontrada: nao consegui testar o codigo
 como resolvi: nao resolvi
 proximo passo: criar os formularios de login para testar a execução do código
+
+29/10/2026
+O que foi feito: Finalizei as rotas de login
+Dificuldade encontrada: um erro de redirecionamento no login
+Como resolvi: Consultei a documentacao
+proximo passo: Fazer o cadastro de doacoes

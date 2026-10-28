@@ -4,7 +4,7 @@
 
 {% block conteudo %}
   <h1>Entrar</h1>
-  <form method="post">
+  <form method="POST" action="{{ url_for('auth.login') }}">
     <label>Email <input type="email" name="email" required></label>
     <label>Senha <input type="password" name="senha" required></label>
     <button type="submit">Entrar</button>
