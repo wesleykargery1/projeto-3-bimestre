@@ -1,5 +1,6 @@
 from flask import render_template, request, redirect, url_for, flash
 from blueprints.auth import auth_bp
+from sqlalchemy import select
 from models import Usuarios
 from database import engine
 from sqlalchemy.orm import Session
@@ -7,14 +8,15 @@ from sqlalchemy.orm import Session
 @auth_bp.route('/login', methods=["GET", "POST"])
 def login():
     if request.method == "POST":
-        usuario = Usuarios(
-            nome = request.form.get('nome'),
-            email = request.form.get('email'),
-            senha = request.form.get('senha')
-        )
+        email = request.form.get('email')
+        senha = request.form.get('senha')
         with Session(bind = engine) as session:
-            session.add(usuario)
-            session.commit()
+            usuario = session.scalar(select(Usuarios).where(Usuarios.email == email))
+            
+            if usuario and usuario.senha == senha:
+               return redirect(url_for('index.index'))
+           
+    return render_template('auth/login.html')
 
 @auth_bp.route('/logout')
 def logout():
@@ -24,5 +26,13 @@ def logout():
 @auth_bp.route('/cadastro', methods=["GET", "POST"])
 def register():
     if request.method == "POST":
-        return redirect(url_for("auth.register"))
+            usuario = Usuarios(
+                nome = request.form.get('nome'),
+                email = request.form.get('email'),
+                senha = request.form.get('senha')
+            )
+            with Session(bind = engine) as session:
+                session.add(usuario)
+                session.commit()
+            return redirect(url_for('index.index'))
     return render_template("auth/cadastro.html")
