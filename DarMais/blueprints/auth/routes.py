@@ -1,13 +1,20 @@
 from flask import render_template, request, redirect, url_for, flash
 from blueprints.auth import auth_bp
-
+from models import Usuarios
+from database import engine
+from sqlalchemy.orm import Session
 
 @auth_bp.route('/login', methods=["GET", "POST"])
 def login():
     if request.method == "POST":
-        return redirect(url_for("auth.login"))
-    return render_template("auth/login.html")
-
+        usuario = Usuarios(
+            nome = request.form.get('nome'),
+            email = request.form.get('email'),
+            senha = request.form.get('senha')
+        )
+        with Session(bind = engine) as session:
+            session.add(usuario)
+            session.commit()
 
 @auth_bp.route('/logout')
 def logout():
