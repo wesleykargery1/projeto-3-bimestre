@@ -18,7 +18,7 @@ def login():
 @auth_bp.route('/logout')
 def logout():
     session.pop('user_id', None)
-    return redirect(url_for("index.index"))
+    return redirect(url_for("auth.login"))
 
 @auth_bp.route('/cadastro')
 def cadastro():
