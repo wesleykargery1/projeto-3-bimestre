@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Cadastro{% endblock %}
+
+{% block conteudo %}
+<div class="auth">
+  <h1>Criar conta</h1>
+  <form method="post">
+    <label>Nome <input type="text" name="nome" required></label>
+    <label>Email <input type="email" name="email" required></label>
+    <label>Senha <input type="password" name="senha" required></label>
+    <button type="submit">Cadastrar</button>
+  </form>
+  <p>Já tem conta? <a href="{{ url_for('auth.login') }}">Entrar</a></p>
+  </div>
+{% endblock %}

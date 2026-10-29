@@ -3,26 +3,18 @@
 {% block titulo %}Início{% endblock %}
 
 {% block conteudo %}
-<header class="main-header">
-  <div class="header-content">
-    <h1>DarMais</h1>
-    <p>Escolha uma causa</p>
-  </div>
-</header>
+  <section class="hero">
+    <h1>Faça a diferença</h1>
+  </section>
 
-<div class="content-body">
   <h2>Instituições Beneficiadas</h2>
-
-  <div class="cards-grid">
-    {% for instituicao in instituicoes %}
+  <div class="cards">
+    {% for inst in instituicoes %}
       <div class="card">
-        <h3>{{ instituicao.nome }}</h3>
-        <p>{{ instituicao.descricao }}</p>
-        <button type="button" class="btn-doar">Doar</button>
+        <h3>{{ inst.nome }}</h3>
+        <p>{{ inst.descricao }}</p>
+        <button type="button">Doar</button>
       </div>
-    {% else %}
-      <p class="empty-msg">Nenhuma instituição cadastrada no momento.</p>
     {% endfor %}
   </div>
-</div>
 {% endblock %}

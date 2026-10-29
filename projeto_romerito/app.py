@@ -1,13 +1,20 @@
-# app.py — Oficina de Conserto (versão inicial)
 from flask import Flask
 from database import Base, engine
+import models
 from blueprints.index import index_bp
-from models import Usuario, Instituicao, Doacao
+from blueprints.auth import auth_bp
 
 app = Flask(__name__)
 app.secret_key = "segredo"
+
 app.register_blueprint(index_bp)
+app.register_blueprint(auth_bp)
+
 Base.metadata.create_all(engine)
+
+if __name__ == "__main__":
+    app.run(debug=True)
+
 
 
 

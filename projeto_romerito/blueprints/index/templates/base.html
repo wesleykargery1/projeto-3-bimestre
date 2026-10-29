@@ -3,17 +3,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{% block titulo %}DarMais{% endblock %}</title>
+  <title>{% block titulo %}Início{% endblock %} - DarMais</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+  <header>
+    <a class="logo" href="{{ url_for('index.index') }}">DarMais</a>
+    <nav>
+      <a href="{{ url_for('index.index') }}">Início</a>
+      <a href="{{ url_for('auth.login') }}">Entrar</a>
+      <a href="{{ url_for('auth.register') }}">Cadastrar</a>
+    </nav>
+  </header>
 
-  <main class="container">
-    {% block conteudo %}
-    {% endblock %}
+  <main>
+    {% block conteudo %}{% endblock %}
   </main>
 
-  <footer class="main-footer">
-    <p>&copy; 2026 DarMais. Todos os direitos reservados.</p>
+  <footer>
+    <p>DarMais &copy; 2026</p>
   </footer>
 
 </body>
