@@ -59,7 +59,6 @@ class pedidodeajuda(Base):
     __tablename__ = 'pedidos_ajuda'
 
     id: Mapped[int] = mapped_column(autoincrement=True, primary_key=True)
-    Instituicao_id: Mapped[int] = mapped_column(ForeignKey("instituicoes.id"), nullable=False)
     titulo: Mapped[str] = mapped_column(String(100))
     descricao: Mapped[str] = mapped_column(Text)
 

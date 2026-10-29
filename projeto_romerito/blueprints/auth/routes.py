@@ -1,21 +1,35 @@
-from flask import render_template, request, redirect, url_for, flash
+from flask import render_template, request, redirect, url_for, session
 from blueprints.auth import auth_bp
-
-
-@auth_bp.route('/login', methods=["GET", "POST"])
+from sqlalchemy import select
+from database import Session, engine
+from models import Usuarios
+@auth_bp.route('/login')
 def login():
-    if request.method == "POST":
-        return redirect(url_for("auth.login"))
-    return render_template("auth/login.html")
+        email = request.form.get('email')
+        senha = request.form.get('senha')
+        usuario = session.scalar(select(Usuarios).where(Usuarios.email == email))
 
+        if usuario and usuario.senha == senha:
+            session['user_id'] = usuario.id
+            return redirect(url_for('index.index'))
+
+        return render_template('auth/login.html')
 
 @auth_bp.route('/logout')
 def logout():
-    return redirect(url_for("index.index"))
+    session.pop('user_id', None)
+    return redirect(url_for("auth.login"))
 
-
-@auth_bp.route('/cadastro', methods=["GET", "POST"])
-def register():
+@auth_bp.route('/cadastro')
+def cadastro():
     if request.method == "POST":
-        return redirect(url_for("auth.register"))
+            usuario = Usuarios(
+                nome = request.form.get('nome'),
+                email = request.form.get('email'),
+                senha = request.form.get('senha')
+            )
+            with Session(bind = engine) as session:
+                session.add(usuario)
+                session.commit()
+            return redirect(url_for('index.index'))
     return render_template("auth/cadastro.html")
