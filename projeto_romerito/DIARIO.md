@@ -5,6 +5,11 @@ Dificuldade encontrada: estruturar tudo seguindo o padrão mvc e um bug na inser
 Como resolvi: a parte da estrutura eu superei consultando a documentação
 Próximo passo: implementar mais funcionalidades e arrumar o insert
 
+22/10/2026
+O que foi feito: criei o restante das classes que faltavam e seus relacionamentos
+Dificuldades: fazer os relacionamentos
+Como resolvi: utilizei o documento e a base do projeto
+Prócimo passo: terminar as rotas restantes
 
 28/10/2026
 O que foi feito: Criei a base das rotas de login
