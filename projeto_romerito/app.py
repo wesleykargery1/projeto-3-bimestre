@@ -10,7 +10,3 @@ app.register_blueprint(index_bp)
 Base.metadata.create_all(engine)
 
 
-
-
-
-
