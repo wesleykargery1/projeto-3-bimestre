@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Cadastrar Pedido{% endblock %}
+
+{% block conteudo %}
+
+<h2>Cadastrar Pedido de Ajuda</h2>
+
+{% if erro %}
+    <p>{{ erro }}</p>
+{% endif %}
+
+<form method="POST">
+
+    <label>Título:</label>
+    <input type="text" name="titulo" required>
+
+    <label>Descrição:</label>
+    <textarea name="descricao" required></textarea>
+
+    <label>Instituição responsável:</label>
+
+    <select name="instituicao_id" required>
+        {% for instituicao in instituicoes %}
+            <option value="{{ instituicao.id }}">
+                {{ instituicao.nome }}
+            </option>
+        {% endfor %}
+    </select>
+
+    <button type="submit">Cadastrar pedido</button>
+
+</form>
+
+{% endblock %}

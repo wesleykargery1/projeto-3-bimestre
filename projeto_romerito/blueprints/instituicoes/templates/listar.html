@@ -1,0 +1,42 @@
+
+{% extends 'base.html' %}
+
+{% block titulo %}Instituições{% endblock %}
+
+{% block conteudo %}
+
+<section>
+    <h2>Instituições cadastradas</h2>
+
+    <p>Conheça as instituições responsáveis pelos pedidos de ajuda.</p>
+
+    <p>
+        <a href="{{ url_for('instituicoes.cadastro') }}">
+            <button type="button">Cadastrar instituição</button>
+        </a>
+    </p>
+
+    <div class="cards">
+
+        {% for instituicao in instituicoes %}
+
+            <div class="card">
+                <h3>{{ instituicao.nome }}</h3>
+
+                <p>Email: {{ instituicao.email }}</p>
+
+                <a href="{{ url_for('instituicoes.informacoes', instituicao_id=instituicao.id) }}">
+                    Ver informações
+                </a>
+            </div>
+
+        {% else %}
+
+            <p>Nenhuma instituição cadastrada.</p>
+
+        {% endfor %}
+
+    </div>
+</section>
+
+{% endblock %}

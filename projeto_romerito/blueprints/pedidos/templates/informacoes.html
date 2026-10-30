@@ -1,0 +1,28 @@
+
+{% extends 'base.html' %}
+
+{% block titulo %}Informações do Pedido{% endblock %}
+
+{% block conteudo %}
+
+<section class="card">
+
+    <h2>{{ pedido.titulo }}</h2>
+
+    <p>
+        <strong>Descrição:</strong>
+        {{ pedido.descricao }}
+    </p>
+
+    <p>
+        <strong>Instituição responsável:</strong>
+        {{ pedido.instituicao.nome }}
+    </p>
+
+    <a href="{{ url_for('pedidos.listar') }}">
+        Voltar para pedidos
+    </a>
+
+</section>
+
+{% endblock %}

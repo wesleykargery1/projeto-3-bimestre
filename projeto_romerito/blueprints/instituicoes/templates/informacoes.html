@@ -1,0 +1,22 @@
+
+{% extends 'base.html' %}
+
+{% block titulo %}Informações da Instituição{% endblock %}
+
+{% block conteudo %}
+
+<section class="card">
+
+    <h2>{{ instituicao.nome }}</h2>
+
+    <p><strong>Email:</strong> {{ instituicao.email }}</p>
+
+    <p><strong>CNPJ:</strong> {{ instituicao.cnpj }}</p>
+
+    <a href="{{ url_for('instituicoes.listar') }}">
+        Voltar para instituições
+    </a>
+
+</section>
+
+{% endblock %}

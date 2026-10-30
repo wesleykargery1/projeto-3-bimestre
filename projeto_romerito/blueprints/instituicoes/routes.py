@@ -1,0 +1,56 @@
+from flask import render_template, request, redirect, url_for
+from blueprints.instituicoes import instituicoes_bp
+from database import Session
+from models import Istituicao
+from werkzeug.security import generate_password_hash
+from sqlalchemy import select
+
+
+@instituicoes_bp.route('/cadastro_instituicao', methods=['GET', 'POST'])
+def cadastro():
+    if request.method == 'POST':
+        nome = request.form.get('nome')
+        email = request.form.get('email')
+        cnpj = request.form.get('cnpj')
+        senha = request.form.get('senha')
+
+        if not nome or not email or not cnpj or not senha:
+            return render_template(
+                'instituicoes/cadastro.html',
+                erro='Prencha todos os campos.'
+            )
+        With Session() as session:
+        instituicao = Instituicao(
+            nome=nome,
+            email=email,
+            cnpj=cnpj,
+            senha=generate_password_hash(senha)
+        )
+
+        session.add(instituicao)
+        session.commit()
+
+@instituicoes_bp.route('/instituicoes')
+def listar():
+    with Session() as session:
+        instituicoes = session.scalars(
+            sect(Instituicao)
+        ).all()
+
+        return render_template(
+            'instituicoes/listar.html',
+            instituicoes=instituicoes
+        )
+
+@instituicoes_bp.route('/instituicao/<int:instituicao_id>')
+def informacoes(instituicao_id):
+    with Session() as session:
+        instituicao = session.get(Instituicao, instituicao_id)
+
+        if instituicao is None:
+            return 'Instituição não encontrada', 404
+
+        return render_template(
+            'instituicoes/informacoes.html',
+            instituicao=instituicao
+        )

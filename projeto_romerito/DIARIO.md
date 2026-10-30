@@ -28,3 +28,9 @@ O que foi feito: Criei e completei o blueprint relacionado a orgs, usuarios
 Dificuldade encontrada: Acabei quebrando muita cabeca com o codigo por causa de erros idiotas na sintaxe
 Como resolvi: 1 hora cacando erro
 Proximo passo: Terminar os outros blueprints
+
+30/10/2026
+O que foi feito: Criei e completei o blueprint de pedidos e instituicoes
+Dificuldade: alguns erros de sintax por confusão visual
+Como resolvi: fazendo por partes e calmamente
+Próximo passo: fazer os blueprints restantes 
