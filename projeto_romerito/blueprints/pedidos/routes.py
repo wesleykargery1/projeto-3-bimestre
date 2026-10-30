@@ -1,6 +1,6 @@
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for, session as sf
 from blueprints.pedidos import pedidos_bp
-from database import Session
+from database import Session, engine
 from models import Instituicao, PedidoDeAjuda
 from sqlalchemy import select
 
@@ -50,7 +50,10 @@ def cadastrar():
 
 @pedidos_bp.route('/pedidos')
 def listar():
-    with Session() as session:
+    usuario_id = sf.get('user_id')
+    if not usuario_id:
+        return render_template('auth/login.html')
+    with Session(bind = engine) as session:
         pedidos = session.scalars(
             select(PedidoDeAjuda)
         ).all()
@@ -62,13 +65,16 @@ def listar():
 
 @pedidos_bp.route('/pedido/<int:pedido_id>')
 def informacoes(pedido_id):
-    with Session() as session:
+    usuario_id = sf.get('user_id')
+    if not usuario_id:
+        return render_template('auth/login.html')
+    with Session(bind = engine) as session:
        pedido = session.get(PedidoDeAjuda, pedido_id)
 
-    if pedido is None:
+       if pedido is None:
         return 'Pedido não encontrado', 404
 
-    return render_template(
+       return render_template(
         'pedidos/informacoes.html',
         pedido=pedido
-    )
+        )
