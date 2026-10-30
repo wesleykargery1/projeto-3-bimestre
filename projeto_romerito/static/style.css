@@ -35,3 +35,23 @@ a { color: var(--azul-escuro); }
 footer { text-align: center; padding: 1.5rem; color: var(--texto); margin-top: 2rem; }
 .auth { max-width: 320px; margin: 2rem auto; text-align: center; }
 .auth form { max-width: none; text-align: left; }
+
+.btn-cadastro {
+    display: inline-block;
+    background-color: var(--azul-escuro);
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    border: 2px solid var(--azul-escuro);
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn-cadastro:hover {
+    background-color: var(--coral);
+    color: var(--texto);
+    border-color: var(--coral);
+    transform: translateY(-2px);
+}

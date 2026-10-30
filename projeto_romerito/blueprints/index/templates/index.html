@@ -1,3 +1,4 @@
+
 {% extends 'base.html' %}
 
 {% block titulo %}Início{% endblock %}
@@ -6,7 +7,9 @@
   <section class="hero">
     <h1>Faça a diferença</h1>
   </section>
+
   <h2>Instituições Beneficiadas</h2>
+
   <div class="cards">
     {% for inst in instituicoes %}
       <div class="card">
@@ -16,5 +19,8 @@
       </div>
     {% endfor %}
   </div>
-  <a href="{{url_for('ongs.cadastro_ongs')}}">Cadastre uma ONG</a>
+  <br>
+  <a class="btn-cadastro" href="{{ url_for('ongs.cadastro_ongs') }}">
+    Cadastre uma ONG
+  </a>
 {% endblock %}

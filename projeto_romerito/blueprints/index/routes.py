@@ -1,5 +1,7 @@
 from blueprints.index import index_bp
-from flask import render_template
+from flask import render_template, session as flask_sessao
+from database import Session, engine
+from models import Usuarios
 
 INSTITUICOES = [
     {"nome": "Associação Apoio à Infância",

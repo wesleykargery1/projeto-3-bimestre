@@ -16,7 +16,8 @@
       <a href="{{ url_for('auth.cadastro') }}">Cadastrar</a>
       {% endif %}
       {% if session.get("user_id") %}
-      <a href="{{ url_for('auth.logout') }}">Sair</a>
+        <a href="{{ url_for('users.perfil', user_id=session.get('user_id')) }}">Ver seu perfil</a>
+        <a href="{{ url_for('auth.logout') }}">Sair</a>
       {% endif %}
     </nav>
   </header>

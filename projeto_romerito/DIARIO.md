@@ -22,3 +22,9 @@ O que foi feito: Finalizei as rotas de login
 Dificuldade encontrada: um erro de redirecionamento no login
 Como resolvi: Consultei a documentacao
 proximo passo: Fazer o cadastro de doacoes
+
+30/10/2026
+O que foi feito: Criei e completei o blueprint relacionado a orgs, usuarios
+Dificuldade encontrada: Acabei quebrando muita cabeca com o codigo por causa de erros idiotas na sintaxe
+Como resolvi: 1 hora cacando erro
+Proximo passo: Terminar os outros blueprints

@@ -1,0 +1,23 @@
+ {% extends 'base.html' %}
+
+{% block titulo %}Meu perfil{% endblock %}
+
+{% block conteudo %}
+
+<section class="auth">
+    <h2>Meu perfil</h2>
+
+    <div class="card">
+        <h3>Informações da conta</h3>
+
+        <p><strong>Nome:{{ usuario.nome }}</p>
+
+        <p><strong>E-mail:{{ usuario.email }}</p>
+
+        <a href="{{ url_for('index.index') }}">
+            Voltar ao início
+        </a>
+    </div>
+</section>
+
+{% endblock %}
