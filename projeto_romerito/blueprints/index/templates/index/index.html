@@ -18,13 +18,24 @@
         <a href="{{url_for('doacoes.doar')}}"><button type="button">Doar</button></a>
       </div>
     {% endfor %}
+    </div>
+  <h2>ONGS cadastradas</h2>
+ <div class="cards">
+  {% for ong in ongs %}
+  <div class="card">
+
+    <h3>{{ ong.nome}}</h3>
+    <a href="{{url_for('ongs.informacoes', ong_id = ong.id)}}"><button type="button">Informações</button></a>
+    </div>
+    {% endfor %}
   </div>
+
   <br>
   <a class="btn-cadastro" href="{{ url_for('ongs.cadastro_ongs') }}">
     Cadastre uma ONG
   </a>
   <a class="btn-cadastro" href="{{url_for('doacoes.doar', user_id=session.get('user_id')) }}">Doe para uma ONG</a>
-  <a class="btn-cadastro" href="{{url_for('instituicoes.cadastro')}}">Cadastre uma instituicao</a>
+  <a class="btn-cadastro" href="{{url_for('instituicoes.cadastro')}}">Cadastre uma instituição</a>
   <a class="btn-cadastro" href="{{url_for('pedidos.cadastrar')}}">Cadastre um pedido de ajuda</a>
   <br>
   <br>

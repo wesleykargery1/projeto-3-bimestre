@@ -1,6 +1,7 @@
 from flask import Flask
 from database import Base, engine
 import models
+from seed import popular_banco
 from blueprints.index import index_bp
 from blueprints.auth import auth_bp
 from blueprints.ongs import ongs_bp
@@ -20,6 +21,7 @@ app.register_blueprint(doacoes_bp)
 app.register_blueprint(instituicoes_bp)
 app.register_blueprint(pedidos_bp)
 
+popular_banco()
 Base.metadata.create_all(engine)
 
 if __name__ == "__main__":
