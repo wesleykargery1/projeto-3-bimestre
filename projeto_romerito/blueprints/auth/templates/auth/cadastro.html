@@ -5,7 +5,7 @@
 {% block conteudo %}
 <div class="auth">
   <h1>Criar conta</h1>
-  <form method="post">
+  <form method="post" action="{{url_for('auth.cadastro')}}">
     <label>Nome <input type="text" name="nome" required></label>
     <label>Email <input type="email" name="email" required></label>
     <label>Senha <input type="password" name="senha" required></label>

@@ -1,5 +1,5 @@
 from blueprints.index import index_bp
-from flask import render_template
+from flask import render_template, session
 from database import Session, engine
 from models import Usuarios
 
@@ -17,4 +17,9 @@ INSTITUICOES = [
 
 @index_bp.route('/')
 def index():
-    return render_template("index/index.html", instituicoes=INSTITUICOES)
+    usuario_id = session.get('user_id')
+    if usuario_id:
+        return render_template("index/index.html", instituicoes=INSTITUICOES)
+    
+    return render_template('auth/login.html')
+
