@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for, session as sf
 from blueprints.pedidos import pedidos_bp
 from database import Session
 from models import Instituicao, PedidoDeAjuda
@@ -6,8 +6,10 @@ from sqlalchemy import select
 
 @pedidos_bp.route('/cadastrar_pedido',methods=['GET','POST'])
 def cadastrar():
+    usuario_id = sf.get('user_id')
+    if not usuario_id:
+        return render_template('auth/login.html')
     with Session() as session:
-
         instituicoes = session.scalars(
             select(Instituicao)
         ).all()
@@ -50,6 +52,9 @@ def cadastrar():
 
 @pedidos_bp.route('/pedidos')
 def listar():
+    usuario_id = sf.get('user_id')
+    if not usuario_id:
+        return render_template('auth/login.html')
     with Session() as session:
         pedidos = session.scalars(
             select(PedidoDeAjuda)
@@ -62,6 +67,9 @@ def listar():
 
 @pedidos_bp.route('/pedido/<int:pedido_id>')
 def informacoes(pedido_id):
+    usuario_id = sf.get('user_id')
+    if not usuario_id:
+        return render_template('auth/login.html')
     with Session() as session:
        pedido = session.get(PedidoDeAjuda, pedido_id)
 
