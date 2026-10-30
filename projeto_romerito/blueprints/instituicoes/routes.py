@@ -1,7 +1,7 @@
 from flask import render_template, request, redirect, url_for
 from blueprints.instituicoes import instituicoes_bp
 from database import Session
-from models import Istituicao
+from models import Instituicao
 from werkzeug.security import generate_password_hash
 from sqlalchemy import select
 
@@ -19,22 +19,24 @@ def cadastro():
                 'instituicoes/cadastro.html',
                 erro='Prencha todos os campos.'
             )
-        With Session() as session:
-        instituicao = Instituicao(
+        with Session() as session:
+         instituicao = Instituicao(
             nome=nome,
             email=email,
             cnpj=cnpj,
             senha=generate_password_hash(senha)
         )
 
-        session.add(instituicao)
-        session.commit()
+         session.add(instituicao)
+         session.commit()
+         return redirect(url_for('instituicoes.listar'))
+    return render_template('instituicoes/cadastro.html')
 
 @instituicoes_bp.route('/instituicoes')
 def listar():
     with Session() as session:
         instituicoes = session.scalars(
-            sect(Instituicao)
+            select(Instituicao)
         ).all()
 
         return render_template(

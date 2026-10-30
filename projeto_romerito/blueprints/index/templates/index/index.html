@@ -1,0 +1,29 @@
+
+{% extends 'base.html' %}
+
+{% block titulo %}Início{% endblock %}
+
+{% block conteudo %}
+  <section class="hero">
+    <h1>Faça a diferença</h1>
+  </section>
+
+  <h2>Instituições Beneficiadas</h2>
+
+  <div class="cards">
+    {% for inst in instituicoes %}
+      <div class="card">
+        <h3>{{ inst.nome }}</h3>
+        <p>{{ inst.descricao }}</p>
+        <a href="{{url_for('doacoes.doar')}}"><button type="button">Doar</button></a>
+      </div>
+    {% endfor %}
+  </div>
+  <br>
+  <a class="btn-cadastro" href="{{ url_for('ongs.cadastro_ongs') }}">
+    Cadastre uma ONG
+  </a>
+  <a class="btn-cadastro" href="{{url_for('doacoes.doar', user_id=session.get('user_id')) }}">Doe para uma ONG</a>
+  <a class="btn-cadastro" href="{{url_for('instituicoes.cadastro')}}">Cadastre uma instituicao</a>
+  <a class="btn-cadastro" href="{{url_for('pedidos.cadastrar')}}">Cadastre um pedido de ajuda</a>
+{% endblock %}

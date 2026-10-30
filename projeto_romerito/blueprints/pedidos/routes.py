@@ -1,8 +1,7 @@
 from flask import render_template, request, redirect, url_for
-from blueprints.instituicoes import instituicoes_bp
+from blueprints.pedidos import pedidos_bp
 from database import Session
-from models import Istituicao
-from werkzeug.security import generate_password_hash
+from models import Instituicao, PedidoDeAjuda
 from sqlalchemy import select
 
 @pedidos_bp.route('/cadastrar_pedido',methods=['GET','POST'])
@@ -14,7 +13,7 @@ def cadastrar():
         ).all()
 
         if request.method == 'POST':
-            titulo = rquest.form.get('titulo')
+            titulo = request.form.get('titulo')
             descricao = request.form.get('descricao')
             instituicao_id = request.form.get('instituicao_id')
 
@@ -30,7 +29,7 @@ def cadastrar():
                 int(instituicao_id)
             )
 
-            if instituicaois None:
+            if instituicao is None:
                 return 'Instituição não encontrada', 404
 
             pedido = PedidoDeAjuda(
@@ -40,7 +39,7 @@ def cadastrar():
             )
 
             session.add(pedido)
-            session.commit
+            session.commit()
 
             return redirect(url_for('pedidos.listar'))
 
@@ -63,10 +62,10 @@ def listar():
 
 @pedidos_bp.route('/pedido/<int:pedido_id>')
 def informacoes(pedido_id):
-    withSession() as session:
-    pedido = session.get(PedidoDeAjuda, pedido_id)
+    with Session() as session:
+       pedido = session.get(PedidoDeAjuda, pedido_id)
 
-    if pedido is none:
+    if pedido is None:
         return 'Pedido não encontrado', 404
 
     return render_template(

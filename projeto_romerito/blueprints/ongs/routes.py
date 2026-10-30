@@ -11,7 +11,7 @@ def cadastro_ongs():
         descricao = request.form.get('descricao')
         
         if not nome or not descricao:
-            return render_template("cadastro.html")
+            return render_template("ongs/cadastro.html")
         
         with Session(bind = engine) as session:
             ong = Ong(
@@ -23,7 +23,7 @@ def cadastro_ongs():
             ong_id = ong.id
             return redirect(url_for('ongs.informacoes', ong_id = ong_id))
         
-    return render_template("cadastro.html")
+    return render_template("ongs/cadastro.html")
 
 
 
@@ -39,7 +39,7 @@ def informacoes(ong_id):
            'descricao' : ongs.descricao
        }
        
-       return render_template('informacoes.html', ong = dados)
+       return render_template('ongs/informacoes.html', ong = dados)
        
 @ongs_bp.route('/trabalhos/<int:ong_id>')
 def trabalhos(ong_id):
@@ -57,4 +57,4 @@ def trabalhos(ong_id):
                 for projeto in ongs.projetos
                ]
            }
-           return render_template('trabalhos.html', ong = projetos)
+           return render_template('ongs/trabalhos.html', ong = projetos)

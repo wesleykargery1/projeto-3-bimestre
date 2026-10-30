@@ -1,0 +1,47 @@
+
+{% extends 'base.html' %}
+
+{% block titulo %}Minhas Doações{% endblock %}
+
+{% block conteudo %}
+
+<section class="hero">
+    <h1>Minhas doações</h1>
+    <p>Acompanhe suas contribuições.</p>
+</section>
+
+<h2>Histórico de doações</h2>
+
+<div class="cards">
+
+        <div class="card">
+        {% for doacao in doacoes %}
+            <h3>
+                {% if doacao.ong %}
+                <p>Ong:</p>{{ doacao.ong.nome }}
+                {% elif doacao.pedido_ajuda %}
+                    Pedido de ajuda: {{doacao.pedido_ajuda.titulo}}
+                {% else %}
+                    Destino não informado
+                {% endif %}
+            </h3>
+
+            <p>
+                <strong>Valor:</strong>
+                R$ {{ "%.2f"|format(doacao.valor) }}
+            </p>
+
+            <p>
+                <strong>Data:</strong>
+                {{ doacao.data_doacao.strftime('%d/%m/%Y') }}
+            </p>
+        {% endfor %}
+        </div>
+
+</div>
+
+<a href="{{ url_for('doacoes.doar') }}" class="btn-cadastro">
+    Realizar uma doação
+</a>
+
+{% endblock %}

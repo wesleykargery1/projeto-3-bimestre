@@ -15,4 +15,4 @@ def perfil(user_id):
         if not usuario:
             return 'Usuario nao encontrado', 404
         
-        return render_template('perfil.html', usuario = dados )
+        return render_template('users/perfil.html', usuario = dados )

@@ -1,0 +1,50 @@
+
+{% extends 'base.html' %}
+
+{% block titulo %}Cadastrar Doação{% endblock %}
+
+{% block conteudo %}
+
+<section class="hero">
+    <h1>Faça sua doação</h1>
+    <p>Sua contribuição pode transformar vidas!</p>
+</section>
+
+<div class="form-doacao">
+    <h2>Informações da doação</h2>
+
+    <form method="POST" action="">
+
+        <label for="valor">Valor da doação (R$)</label>
+        <input
+            type="number"
+            id="valor"
+            name="valor"
+            min="0.01"
+            step="0.01"
+            placeholder="Ex: 50.00"
+            required
+        >
+
+        <label>Escolha uma ONG:</label>
+          <select name="ong_id">
+            <option value="">Nenhuma</option>
+          {% for ong in ongs %}
+             <option value="{{ ong.id }}">{{ ong.nome }}</option>
+         {% endfor %}
+          </select>
+
+        <label>Escolha um pedido de ajuda:</label>
+        <select name="pedido_ajuda_id">
+          <option value="">Nenhum</option>
+          {% for pedido in pedidos %}
+            <option value="{{ pedido.id }}">{{ pedido.titulo }}</option>
+          {% endfor %}
+         </select>
+
+        <button type="submit">Confirmar doação</button>
+
+    </form>
+</div>
+
+{% endblock %}
