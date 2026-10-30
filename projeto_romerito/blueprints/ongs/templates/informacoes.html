@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Informações da ONG{% endblock %}
+
+{% block conteudo %}
+
+<section class="hero">
+    <h1>
+        {% if ong %}
+            {{ ong.nome }}
+        {% else %}
+            Conheça nossa organização
+        {% endif %}
+    </h1>
+
+    <p>
+        Conheça nossa história, nossos objetivos e o impacto do nosso trabalho.
+    </p>
+</section>
+
+{% if ong %}
+
+<section class="card perfil-ong">
+
+    <div class="cabecalho-ong">
+        <div>
+            <h2>{{ ong.nome }}</h2>
+
+            <span class="etiqueta">
+                {{ ong.area_atuacao }}
+            </span>
+        </div>
+
+        {% if ong.status == 'aprovada' %}
+            <span class="status aprovado">ONG validada</span>
+        {% else %}
+            <span class="status pendente">Cadastro em análise</span>
+        {% endif %}
+    </div>
+
+    <h3>Sobre a organização</h3>
+
+    <p class="texto-descricao">
+        {{ ong.descricao }}
+    </p>
+
+    <h3>Informações</h3>
+
+    <ul class="lista-informacoes">
+        <li>
+        <a href="{{url_for('ongs.trabalhos', ong_id = ong.id)}}">Conheca os trabalhos da ONG</a>
+        </li>
+    </ul>
+
+    <h3>Transparência</h3>
+
+    <p>
+        A transparência é fundamental para construir uma relação de confiança
+        entre a organização e as pessoas que desejam contribuir.
+        Consulte as informações e os projetos publicados pela ONG para
+        conhecer melhor seu trabalho.
+    </p>
+
+    {% if ong.status == 'aprovada' %}
+        <a
+            class="botao-link"
+            href="{{ url_for('ongs.trabalhos', ong_id=ong.id) }}"
+        >
+            Conhecer nossos trabalhos
+        </a>
+    {% else %}
+        <p class="texto-apoio">
+            As informações públicas desta organização ainda dependem da
+            conclusão do processo de validação.
+        </p>
+    {% endif %}
+
+</section>
+
+{% else %}
+
+<section class="card">
+    <h2>Organização não encontrada</h2>
+
+    <p>
+        Não foi possível encontrar as informações dessa ONG.
+    </p>
+
+    <a href="{{ url_for('ongs.listar') }}" class="botao-link">
+        Ver ONGs cadastradas
+    </a>
+</section>
+
+{% endif %}
+
+{% endblock %}

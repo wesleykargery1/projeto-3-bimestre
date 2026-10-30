@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Trabalhos sociais{% endblock %}
+
+{% block conteudo %}
+
+<section class="hero">
+    <h1>
+        {% if ong %}
+            Trabalhos de {{ ong.nome }}
+        {% else %}
+            Nossos trabalhos
+        {% endif %}
+    </h1>
+
+    <p>
+        Conheça os projetos e as iniciativas que ajudam a transformar vidas.
+    </p>
+</section>
+
+{% if ong %}
+
+<section class="secao-projetos">
+
+    <h2>Projetos sociais</h2>
+
+    <p>
+        Acompanhe as iniciativas desenvolvidas pela organização.
+    </p>
+
+    {% if ong.projetos %}
+
+        <div class="cards">
+
+            {% for projeto in ong.projetos %}
+
+                <article class="card">
+
+                    <h3>{{ projeto.nome }}</h3>
+
+                    {% if projeto.descricao %}
+                        <p>{{ projeto.descricao }}</p>
+                    {% else %}
+                        <p>
+                            Conheça esta iniciativa e saiba mais sobre
+                            o trabalho desenvolvido pela organização.
+                        </p>
+                    {% endif %}
+
+                </article>
+
+            {% endfor %}
+
+        </div>
+
+    {% else %}
+
+        <div class="card">
+            <h3>Nenhum projeto publicado</h3>
+
+            <p>
+                Esta organização ainda não cadastrou projetos sociais.
+                Volte em breve para conhecer suas iniciativas.
+            </p>
+        </div>
+
+    {% endif %}
+
+</section>
+
+<section class="card chamada-doacao">
+
+    <h2>Faça parte dessa iniciativa</h2>
+
+    <p>
+        Conhecer o trabalho de uma organização é o primeiro passo para
+        contribuir com suas ações sociais.
+    </p>
+</section>
+
+{% else %}
+
+<section class="card">
+    <h2>Organização não encontrada</h2>
+
+    <p>
+        Não foi possível encontrar os projetos dessa ONG.
+    </p>
+</section>
+
+{% endif %}
+
+{% endblock %}

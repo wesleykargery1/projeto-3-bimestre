@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Cadastrar ONG{% endblock %}
+
+{% block conteudo %}
+<section class="auth">
+    <h2>Cadastrar ONG</h2>
+    <p>Apresente a organização e o trabalho social que ela realiza.</p>
+
+    {% if erro %}
+        <p class="erro">{{ erro }}</p>
+    {% endif %}
+
+    {% if sucesso %}
+        <p class="sucesso">{{ sucesso }}</p>
+    {% endif %}
+
+    <form action="{{ url_for('ongs.cadastro_ongs') }}" method="POST">
+        <label for="nome">Nome da ONG:</label>
+        <input
+            type="text"
+            id="nome"
+            name="nome"
+            maxlength="100"
+            placeholder="Nome da organização"
+            required
+        >
+
+        <label for="descricao">Descrição:</label>
+        <textarea
+            id="descricao"
+            name="descricao"
+            rows="6"
+            placeholder="Conte a história da ONG e explique seu trabalho social."
+            required
+        ></textarea>
+
+        <button type="submit">Cadastrar ONG</button>
+    </form>
+</section>
+{% endblock %}

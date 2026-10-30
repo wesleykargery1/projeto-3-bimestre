@@ -3,12 +3,14 @@ from database import Base, engine
 import models
 from blueprints.index import index_bp
 from blueprints.auth import auth_bp
+from blueprints.ongs import ongs_bp
 
 app = Flask(__name__)
 app.secret_key = "segredo"
 
 app.register_blueprint(index_bp)
 app.register_blueprint(auth_bp)
+app.register_blueprint(ongs_bp)
 
 Base.metadata.create_all(engine)
 
