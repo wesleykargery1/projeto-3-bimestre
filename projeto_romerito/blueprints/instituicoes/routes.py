@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, url_for, session as sf
+from flask import render_template, request, redirect, url_for
 from blueprints.instituicoes import instituicoes_bp
 from database import Session
 from models import Instituicao
@@ -8,9 +8,6 @@ from sqlalchemy import select
 
 @instituicoes_bp.route('/cadastro_instituicao', methods=['GET', 'POST'])
 def cadastro():
-    usuario_id = sf.get('user_id')
-    if not usuario_id:
-        return render_template('auth/login.html')
     if request.method == 'POST':
         nome = request.form.get('nome')
         email = request.form.get('email')
@@ -37,9 +34,6 @@ def cadastro():
 
 @instituicoes_bp.route('/instituicoes')
 def listar():
-    usuario_id = sf.get('user_id')
-    if not usuario_id:
-        return render_template('auth/login.html')
     with Session() as session:
         instituicoes = session.scalars(
             select(Instituicao)
@@ -52,9 +46,6 @@ def listar():
 
 @instituicoes_bp.route('/instituicao/<int:instituicao_id>')
 def informacoes(instituicao_id):
-    usuario_id = sf.get('user_id')
-    if not usuario_id:
-        return render_template('auth/login.html')
     with Session() as session:
         instituicao = session.get(Instituicao, instituicao_id)
 

@@ -6,10 +6,8 @@ from sqlalchemy import select
 
 @pedidos_bp.route('/cadastrar_pedido',methods=['GET','POST'])
 def cadastrar():
-    usuario_id = sf.get('user_id')
-    if not usuario_id:
-        return render_template('auth/login.html')
     with Session() as session:
+
         instituicoes = session.scalars(
             select(Instituicao)
         ).all()
