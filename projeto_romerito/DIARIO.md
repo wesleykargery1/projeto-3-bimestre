@@ -34,3 +34,10 @@ O que foi feito: Criei e completei o blueprint de pedidos e instituicoes
 Dificuldade: alguns erros de sintax por confusão visual
 Como resolvi: fazendo por partes e calmamente
 Próximo passo: fazer os blueprints restantes 
+
+
+30/10/2026
+O que foi feito: Arrumei todos os muitos erros nos blueprints de pedidos e instituicoes e terminei o resto do projeto
+Dificuldade: Muita
+Como resolvi: Muita paciencia
+Proximo passo: Dormir
