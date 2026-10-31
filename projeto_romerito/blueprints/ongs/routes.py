@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for, session as flask_sessao
 from blueprints.ongs import ongs_bp
 from database import Session, engine
 from models import Ong
@@ -6,6 +6,9 @@ from models import Ong
 
 @ongs_bp.route('/cadastro_ongs', methods = ['GET', 'POST'])
 def cadastro_ongs():
+    usuario_id = flask_sessao.get('user_id')
+    if not usuario_id:
+        return redirect(url_for('auth.login'))
     if request.method == 'POST':
         nome = request.form.get('nome')
         descricao = request.form.get('descricao')
@@ -29,6 +32,9 @@ def cadastro_ongs():
 
 @ongs_bp.route('/informacoes/<int:ong_id>')
 def informacoes(ong_id):
+    usuario_id = flask_sessao.get('user_id')
+    if not usuario_id:
+        return redirect(url_for('auth.login'))
     with Session(bind = engine ) as session:
        ongs = session.get(Ong, ong_id)
        if not ongs:
@@ -43,6 +49,9 @@ def informacoes(ong_id):
        
 @ongs_bp.route('/trabalhos/<int:ong_id>')
 def trabalhos(ong_id):
+    usuario_id = flask_sessao.get('user_id')
+    if not usuario_id:
+        return redirect(url_for('auth.login'))
     with Session(bind = engine ) as session:
            ongs = session.get(Ong, ong_id)
            if ongs is None:

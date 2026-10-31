@@ -32,6 +32,8 @@ def doar():
 @doacoes_bp.route('/visualizar_doacoes/')
 def visualizar():
      usuario_id = flask_sessao.get('user_id')
+     if not usuario_id:
+        return redirect(url_for('auth.login'))
      with Session(bind = engine ) as session:
         doacoes = session.scalars(select(Doacao).where(Doacao.usuario_id == usuario_id)).all()
         return render_template('doacoes/visualizar.html', doacoes = doacoes)
