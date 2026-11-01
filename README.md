@@ -43,6 +43,7 @@ ProjetoSocial
 
 ## Instruções para instalar dependências;
 pip install flask
+<br>
 pip install sqlalchemy
 
 ## Instruções para criar ou popular o banco;
@@ -57,8 +58,10 @@ Lidar com os relacionamentos na hora de puxar os dados no banco de dados, manter
 ## Declaração de autoria:
 Declaro que desenvolvi este projeto compreendendo o código entregue e que sou
 capaz de explicar e modificar suas partes principais.
+<br>
 Uso de IA:
+<br>
 [ ] Não utilizei IA generativa.
 [X] Utilizei IA generativa e descrevo abaixo onde e como foi utilizada.
-
+<br>
 No nosso projeto a inteligência artificial foi utilizada para gerar o html e o css, entretanto algumas partes do jinja em alguns templates foram feitos de maneira autoral, como todos os links no index.html, a checagem se o usuario está logado para exibir Ver seu perfil e Sair no base.html, além de muitos ajustes porque a IA foi incapaz de entregar os htmls com 100% de precisão.
