@@ -62,6 +62,7 @@ capaz de explicar e modificar suas partes principais.
 Uso de IA:
 <br>
 [ ] Não utilizei IA generativa.
+<br>
 [X] Utilizei IA generativa e descrevo abaixo onde e como foi utilizada.
 <br>
 No nosso projeto a inteligência artificial foi utilizada para gerar o html e o css, entretanto algumas partes do jinja em alguns templates foram feitos de maneira autoral, como todos os links no index.html, a checagem se o usuario está logado para exibir Ver seu perfil e Sair no base.html, além de muitos ajustes porque a IA foi incapaz de entregar os htmls com 100% de precisão.
