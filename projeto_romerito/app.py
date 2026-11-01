@@ -22,7 +22,7 @@ app.register_blueprint(instituicoes_bp)
 app.register_blueprint(pedidos_bp)
 
 Base.metadata.create_all(engine)
-popular_banco()
+
 
 if __name__ == "__main__":
     app.run(debug=True)
